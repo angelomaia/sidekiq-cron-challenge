@@ -168,11 +168,6 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.9)
-    propshaft (1.1.0)
-      actionpack (>= 7.0.0)
-      activesupport (>= 7.0.0)
-      rack
-      railties (>= 7.0.0)
     psych (5.2.2)
       date
       stringio
@@ -309,7 +304,6 @@ DEPENDENCIES
   debug
   kamal
   pg (~> 1.1)
-  propshaft
   puma (>= 5.0)
   rails (~> 8.0.1)
   rubocop-rails-omakase
