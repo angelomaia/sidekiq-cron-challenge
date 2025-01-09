@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  domain: one
+  username: MyString
+  password: MyString
+  scheduled_password_expiration: 2025-01-09
+
+two:
+  domain: two
+  username: MyString
+  password: MyString
+  scheduled_password_expiration: 2025-01-09

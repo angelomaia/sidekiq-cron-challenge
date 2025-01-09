@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_09_182429) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_09_192625) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -20,4 +20,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_09_182429) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "mailboxes", force: :cascade do |t|
+    t.bigint "domain_id", null: false
+    t.string "username"
+    t.string "password"
+    t.date "scheduled_password_expiration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["domain_id"], name: "index_mailboxes_on_domain_id"
+  end
+
+  add_foreign_key "mailboxes", "domains"
 end
