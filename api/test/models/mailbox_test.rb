@@ -2,7 +2,7 @@ require "test_helper"
 
 class MailboxTest < ActiveSupport::TestCase
   setup do
-    @domain = Domain.new(domain_name: "example.com", password_expiration_date: 30)
+    @domain = Domain.new(domain_name: "example.com", password_expiration_frequency: 30)
   end
 
   test "should create mailbox with valid attributes" do
@@ -42,7 +42,7 @@ class MailboxTest < ActiveSupport::TestCase
   end
 
   test "should allow duplicate username in different domains" do
-    domain2 = Domain.new(domain_name: "example.org", password_expiration_date: 30)
+    domain2 = Domain.new(domain_name: "example.org", password_expiration_frequency: 30)
     Mailbox.create!(domain: @domain, username: "user", password: "password", scheduled_password_expiration: Date.today + 30)
     mailbox = Mailbox.new(domain: domain2, username: "user", password: "password", scheduled_password_expiration: Date.today + 30)
     assert mailbox.valid?

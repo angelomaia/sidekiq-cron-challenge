@@ -1282,3 +1282,162 @@ MailboxTest: test_should_not_create_mailbox_without_scheduled_password_expiratio
 ---------------------------------------------------------------------------------
   [1m[36mMailbox Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "mailboxes" WHERE "mailboxes"."username" = $1 AND "mailboxes"."domain_id" IS NULL LIMIT $2[0m  [["username", "user"], ["LIMIT", 1]]
   [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (3.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (5.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO public[0m
+  [1m[35m (66.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS "app_test"[0m
+  [1m[35m (64.5ms)[0m  [1m[35mCREATE DATABASE "app_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (27.6ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql" SCHEMA pg_catalog[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "domains" CASCADE[0m
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE TABLE "domains" ("id" bigserial primary key, "domain_name" character varying, "password_expiration_frequency" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "mailboxes" CASCADE[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE TABLE "mailboxes" ("id" bigserial primary key, "domain_id" bigint NOT NULL, "username" character varying, "password" character varying, "scheduled_password_expiration" date, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE INDEX "index_mailboxes_on_domain_id" ON "mailboxes" ("domain_id")[0m
+  [1m[35m (2.5ms)[0m  [1m[35mALTER TABLE "mailboxes" ADD CONSTRAINT "fk_rails_c2483914be"
+FOREIGN KEY ("domain_id")
+  REFERENCES "domains" ("id")
+[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (3.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20250110163752)[0m
+  [1m[35m (1.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20250109192625),
+(20250109182429);[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2025-01-10 16:40:18.261697', '2025-01-10 16:40:18.261701') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '3381c02ca4b84c13ffb7010c5ec67e9d66ae4f95', '2025-01-10 16:40:18.270152', '2025-01-10 16:40:18.270154') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (5.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (2.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (3.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (2.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE "domains" DISABLE TRIGGER ALL;ALTER TABLE "mailboxes" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[36mFixtures Load (1.3ms)[0m  [1m[31mDELETE FROM "domains";
+DELETE FROM "mailboxes";
+INSERT INTO "domains" ("id", "domain_name", "password_expiration_frequency", "created_at", "updated_at") VALUES (980190962, 'MyString', 1, '2025-01-10 16:42:34.362879', '2025-01-10 16:42:34.362879'), (298486374, 'MyString', 1, '2025-01-10 16:42:34.362879', '2025-01-10 16:42:34.362879');
+INSERT INTO "mailboxes" ("id", "domain_id", "username", "password", "scheduled_password_expiration", "created_at", "updated_at") VALUES (980190962, 980190962, 'MyString', 'MyString', '2025-01-09', '2025-01-10 16:42:34.368906', '2025-01-10 16:42:34.368906'), (298486374, 298486374, 'MyString', 'MyString', '2025-01-09', '2025-01-10 16:42:34.368906', '2025-01-10 16:42:34.368906')[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "domains" ENABLE TRIGGER ALL;ALTER TABLE "mailboxes" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.1ms)[0m  [1m[35mdo $$
+  declare r record;
+BEGIN
+FOR r IN (
+  SELECT FORMAT(
+    'UPDATE pg_catalog.pg_constraint SET convalidated=false WHERE conname = ''%1$I'' AND connamespace::regnamespace = ''%2$I''::regnamespace; ALTER TABLE %2$I.%3$I VALIDATE CONSTRAINT %1$I;',
+    constraint_name,
+    table_schema,
+    table_name
+  ) AS constraint_check
+  FROM information_schema.table_constraints WHERE constraint_type = 'FOREIGN KEY'
+)
+  LOOP
+    EXECUTE (r.constraint_check);
+  END LOOP;
+END;
+$$;
+[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------
+DomainTest: test_should_not_create_domain_with_duplicate_domain_name
+--------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDomain Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "domains" WHERE "domains"."domain_name" = $1 LIMIT $2[0m  [["domain_name", "example.com"], ["LIMIT", 1]]
+  [1m[36mDomain Create (0.3ms)[0m  [1m[32mINSERT INTO "domains" ("domain_name", "password_expiration_frequency", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["domain_name", "example.com"], ["password_expiration_frequency", "[FILTERED]"], ["created_at", "2025-01-10 16:42:34.440908"], ["updated_at", "2025-01-10 16:42:34.440908"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mDomain Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "domains" WHERE "domains"."domain_name" = $1 LIMIT $2[0m  [["domain_name", "example.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------
+DomainTest: test_should_create_domain_with_valid_attributes
+-----------------------------------------------------------
+  [1m[36mDomain Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "domains" WHERE "domains"."domain_name" = $1 LIMIT $2[0m  [["domain_name", "example.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------
+DomainTest: test_should_not_create_domain_without_domain_name
+-------------------------------------------------------------
+  [1m[36mDomain Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "domains" WHERE "domains"."domain_name" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------------------------------------------------
+DomainTest: test_should_not_create_domain_with_non-positive_password_expiration_frequency
+-----------------------------------------------------------------------------------------
+  [1m[36mDomain Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "domains" WHERE "domains"."domain_name" = $1 LIMIT $2[0m  [["domain_name", "example.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------
+MailboxTest: test_should_not_create_mailbox_without_password
+------------------------------------------------------------
+  [1m[36mMailbox Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "mailboxes" WHERE "mailboxes"."username" = $1 AND "mailboxes"."domain_id" IS NULL LIMIT $2[0m  [["username", "user"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------
+MailboxTest: test_should_not_create_mailbox_without_username
+------------------------------------------------------------
+  [1m[36mMailbox Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "mailboxes" WHERE "mailboxes"."username" IS NULL AND "mailboxes"."domain_id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------------------------
+MailboxTest: test_should_create_mailbox_with_valid_attributes
+-------------------------------------------------------------
+  [1m[36mMailbox Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "mailboxes" WHERE "mailboxes"."username" = $1 AND "mailboxes"."domain_id" IS NULL LIMIT $2[0m  [["username", "user"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------------------
+MailboxTest: test_should_allow_duplicate_username_in_different_domains
+----------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mMailbox Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "mailboxes" WHERE "mailboxes"."username" = $1 AND "mailboxes"."domain_id" IS NULL LIMIT $2[0m  [["username", "user"], ["LIMIT", 1]]
+  [1m[36mDomain Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "domains" WHERE "domains"."domain_name" = $1 LIMIT $2[0m  [["domain_name", "example.com"], ["LIMIT", 1]]
+  [1m[36mDomain Create (0.5ms)[0m  [1m[32mINSERT INTO "domains" ("domain_name", "password_expiration_frequency", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["domain_name", "example.com"], ["password_expiration_frequency", "[FILTERED]"], ["created_at", "2025-01-10 16:42:34.513187"], ["updated_at", "2025-01-10 16:42:34.513187"]]
+  [1m[36mMailbox Create (0.6ms)[0m  [1m[32mINSERT INTO "mailboxes" ("domain_id", "username", "password", "scheduled_password_expiration", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["domain_id", 980190964], ["username", "user"], ["password", "[FILTERED]"], ["scheduled_password_expiration", "[FILTERED]"], ["created_at", "2025-01-10 16:42:34.521267"], ["updated_at", "2025-01-10 16:42:34.521267"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mMailbox Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "mailboxes" WHERE "mailboxes"."username" = $1 AND "mailboxes"."domain_id" IS NULL LIMIT $2[0m  [["username", "user"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+--------------------------------------------------------------------------------------
+MailboxTest: test_should_not_create_mailbox_with_duplicate_username_in_the_same_domain
+--------------------------------------------------------------------------------------
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mMailbox Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "mailboxes" WHERE "mailboxes"."username" = $1 AND "mailboxes"."domain_id" IS NULL LIMIT $2[0m  [["username", "user"], ["LIMIT", 1]]
+  [1m[36mDomain Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "domains" WHERE "domains"."domain_name" = $1 LIMIT $2[0m  [["domain_name", "example.com"], ["LIMIT", 1]]
+  [1m[36mDomain Create (0.5ms)[0m  [1m[32mINSERT INTO "domains" ("domain_name", "password_expiration_frequency", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["domain_name", "example.com"], ["password_expiration_frequency", "[FILTERED]"], ["created_at", "2025-01-10 16:42:34.568229"], ["updated_at", "2025-01-10 16:42:34.568229"]]
+  [1m[36mMailbox Create (0.5ms)[0m  [1m[32mINSERT INTO "mailboxes" ("domain_id", "username", "password", "scheduled_password_expiration", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["domain_id", 980190965], ["username", "user"], ["password", "[FILTERED]"], ["scheduled_password_expiration", "[FILTERED]"], ["created_at", "2025-01-10 16:42:34.571130"], ["updated_at", "2025-01-10 16:42:34.571130"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mMailbox Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "mailboxes" WHERE "mailboxes"."username" = $1 AND "mailboxes"."domain_id" = $2 LIMIT $3[0m  [["username", "user"], ["domain_id", 980190965], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+----------------------------------------------------------
+MailboxTest: test_should_not_create_mailbox_without_domain
+----------------------------------------------------------
+  [1m[36mMailbox Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "mailboxes" WHERE "mailboxes"."username" = $1 AND "mailboxes"."domain_id" IS NULL LIMIT $2[0m  [["username", "user"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------------------------------------
+MailboxTest: test_should_not_create_mailbox_with_invalid_password_format
+------------------------------------------------------------------------
+  [1m[36mMailbox Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "mailboxes" WHERE "mailboxes"."username" = $1 AND "mailboxes"."domain_id" IS NULL LIMIT $2[0m  [["username", "user"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------------------------------------------
+MailboxTest: test_should_not_create_mailbox_without_scheduled_password_expiration
+---------------------------------------------------------------------------------
+  [1m[36mMailbox Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "mailboxes" WHERE "mailboxes"."username" = $1 AND "mailboxes"."domain_id" IS NULL LIMIT $2[0m  [["username", "user"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m

@@ -2,8 +2,8 @@
 
 one:
   domain_name: MyString
-  password_expiration_date: 1
+  password_expiration_frequency: 1
 
 two:
   domain_name: MyString
-  password_expiration_date: 1
+  password_expiration_frequency: 1
