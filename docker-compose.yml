@@ -7,11 +7,11 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
 
-  app:
-    build: ./app
+  api:
+    build: ./api
     command: bash -c "rm -f tmp/pids/server.pid && rails server -b 0.0.0.0"
     volumes:
-      - ./app:/app
+      - ./api:/api
     ports:
       - "3000:3000"
     depends_on:
