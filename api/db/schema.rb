@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_09_192625) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_10_163752) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "domains", force: :cascade do |t|
     t.string "domain_name"
-    t.integer "password_expiration_date"
+    t.integer "password_expiration_frequency"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

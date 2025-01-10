@@ -48,3 +48,13 @@ FOREIGN KEY ("domain_id")
   [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
   [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(5277929974492897470) /*application='App'*/[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='App'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5277929974492897470) /*application='App'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='App'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (11.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='App'*/[0m
+Migrating to RenameExpirationInDomain (20250110163752)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='App'*/[0m
+  [1m[35m (2.7ms)[0m  [1m[35mALTER TABLE "domains" RENAME COLUMN "password_expiration_date" TO "password_expiration_frequency" /*application='App'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250110163752') RETURNING "version" /*application='App'*/[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*application='App'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(5277929974492897470) /*application='App'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='App'*/[0m
